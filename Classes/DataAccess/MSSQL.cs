@@ -108,7 +108,23 @@ namespace MovieTinder_API.Classes.DataAccess
 
         public DataTable Read(IDbCommand command)
         {
-            throw new NotImplementedException();
+            SqlCommand sqlCommand = (SqlCommand)command;
+            Dictionary<string, object> SqlObject = new Dictionary<string, object>();
+
+            if (OpenConnection())
+            {
+                sqlCommand.Connection = (SqlConnection)Connection;
+                SqlDataReader data = sqlCommand.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(data);
+                data.Close();
+                CloseConnection();
+                return dt;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public IDbCommand StoredProcedure(string command)

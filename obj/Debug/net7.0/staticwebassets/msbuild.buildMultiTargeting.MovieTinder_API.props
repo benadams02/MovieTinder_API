@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\MovieTinder_API.props" />
+</Project>

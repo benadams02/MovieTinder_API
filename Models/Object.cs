@@ -5,7 +5,7 @@ namespace MovieTinder_API.Models
     public class Object : IObject
     {
         [Attributes.SqlColumn("ID", SqlDbType.Int,PrimaryKey = true)]
-        public virtual int ID { get; }
+        public virtual int ID { get; set; }
 
         [Attributes.SqlColumn("DateCreated", SqlDbType.DateTime)]
         public virtual DateTime DateCreated { get; set; }

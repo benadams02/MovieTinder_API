@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting.Server;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Reflection;
 
 namespace MovieTinder_API.Repositories
@@ -59,7 +60,7 @@ namespace MovieTinder_API.Repositories
                         if (obj != null)
                             objects.Add((ModelType)obj);
                     }
-                    return (IQueryable<ModelType>)objects;
+                    return objects.AsQueryable<ModelType>();
                 }
 
                 return null;

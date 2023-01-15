@@ -4,7 +4,8 @@ using System.Text.Json;
 
 namespace MovieTinder_API.Controllers
 {
-    public class MovieController : Controller
+    [Route("api/[controller]")]
+    public class MovieController : ControllerBase
     {
         Repositories.MovieRepository _movieRepo;
 
@@ -13,6 +14,8 @@ namespace MovieTinder_API.Controllers
             _movieRepo = movieRepo;
         }
 
+
+        [HttpGet, Route("/api/[controller]/{id}")]
         public IActionResult GetByID(int id)
         {
             Models.Movie movie = _movieRepo.GetByID(id);
@@ -22,17 +25,24 @@ namespace MovieTinder_API.Controllers
             return Ok(movieAsJson);
         }
 
-        public IActionResult GetByName(string name)
+        [HttpGet]
+        public IActionResult GetAllMovies()
         {
-            Models.Movie movie = _movieRepo.GetByName(name);
+            List<Models.Movie> movies = _movieRepo.GetAll().ToList();
 
-            string movieAsJson = JsonSerializer.Serialize(movie);
+            string moviesAsJson = JsonSerializer.Serialize(movies);
 
-            return Ok(movieAsJson);
+            return Ok(moviesAsJson);
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+
+        //[HttpGet]
+        //public IActionResult GetByName(string name)
+        //{
+        //    Models.Movie movie = _movieRepo.GetByName(name);
+
+        //    string movieAsJson = JsonSerializer.Serialize(movie);
+
+        //    return Ok(movieAsJson);
+        //}
     }
 }
