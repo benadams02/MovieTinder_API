@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieTinder_API.Repositories;
-using System.Text.Json
+using System.Text.Json;
 
 namespace MovieTinder_API.Controllers
 {

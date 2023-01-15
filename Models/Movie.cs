@@ -1,12 +1,17 @@
-﻿namespace MovieTinder_API.Models
+﻿using System.Data;
+
+namespace MovieTinder_API.Models
 {
-    public class Movie
+    [Attributes.SqlTable("Movies","spGetMovie","spInsertMovie","spUpdateMovie","spDeleteMovie")]
+    public class Movie : Object
     {
-        public int ID { get; set; }
+        [Attributes.SqlColumn("Name",SqlDbType.VarChar)]
         public string Name { get; set; }
+
+        [Attributes.SqlColumn("Description", SqlDbType.VarChar)]
         public string Description { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime LastUpdated { get; set; }
+
+        [Attributes.SqlColumn("Name", SqlDbType.TinyInt)]
         public int Rating { get; set; }
     }
 }
