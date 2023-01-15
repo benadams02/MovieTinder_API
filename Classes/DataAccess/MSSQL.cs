@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Data.SqlClient;
 
 namespace MovieTinder_API.Classes.DataAccess
 {
@@ -13,7 +14,19 @@ namespace MovieTinder_API.Classes.DataAccess
 
         public bool BackupDatabase(string? path = null)
         {
-            throw new NotImplementedException();
+            if (!string.IsNullOrEmpty(path))
+            {
+                return ExecuteQuery(new SqlCommand("", (SqlConnection)this.Connection));
+            }
+
+            if (!string.IsNullOrEmpty(BackupDirectory))
+            {
+                return ExecuteQuery(new SqlCommand("", (SqlConnection)this.Connection));
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool CloseConnection(int retryCount = 0)
@@ -100,7 +113,7 @@ namespace MovieTinder_API.Classes.DataAccess
 
         public IDbCommand StoredProcedure(string command)
         {
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand(command, this.Connection);
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand(command, (System.Data.SqlClient.SqlConnection)this.Connection);
             cmd.CommandType = CommandType.StoredProcedure;
 
             return cmd;
