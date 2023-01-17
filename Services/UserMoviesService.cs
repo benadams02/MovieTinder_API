@@ -32,7 +32,7 @@ namespace MovieTinder_API.Services
 
         public bool Delete(UserMovies modelType)
         {
-            throw new NotImplementedException();
+            return _userMoviesRepository.Delete(modelType.ID);
         }
 
         public UserMovies GetByID(int id)
@@ -42,7 +42,7 @@ namespace MovieTinder_API.Services
 
         public bool Save(UserMovies modelType)
         {
-            throw new NotImplementedException();
+            return _userMoviesRepository.Save(modelType);
         }
     }
 }

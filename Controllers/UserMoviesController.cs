@@ -28,7 +28,7 @@ namespace MovieTinder_API.Controllers
                 return NotFound(new ErrorModel() { Code = "404", Message = "Movie not found. Invalid movie ID" });
             }
 
-            if (_movieService.LikeMovie(movie, new Models.User(), rating))
+            if (_movieService.RateMovie(movie, new Models.User(), rating))
             {
 
             }

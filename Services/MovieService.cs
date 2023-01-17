@@ -24,7 +24,7 @@ namespace MovieTinder_API.Services
             return _movieRepository.GetAll().ToList();
         }
 
-        public bool LikeMovie(Movie movie, User user)
+        public bool RateMovie(Movie movie, User user)
         {
             Models.UserMovies userMovie = _userMoviesService.Create(movie, user);
 
@@ -37,7 +37,7 @@ namespace MovieTinder_API.Services
                 return false;
             }
         }
-        public bool LikeMovie(Movie movie, User user, UserMovies.UserMovieRatings movieRating)
+        public bool RateMovie(Movie movie, User user, UserMovies.UserMovieRatings movieRating)
         {
             Models.UserMovies userMovie = _userMoviesService.Create(movie, user, movieRating);
 
@@ -53,12 +53,12 @@ namespace MovieTinder_API.Services
 
         public bool Delete(Movie modelType)
         {
-            throw new NotImplementedException();
+            return _movieRepository.Delete(modelType.ID);
         }
 
         public bool Save(Movie modelType)
         {
-            throw new NotImplementedException();
+            return _movieRepository.Save(modelType);
         }
 
         public Movie Create()
