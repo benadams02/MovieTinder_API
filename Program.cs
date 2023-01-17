@@ -9,6 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<MovieRepository>();
+builder.Services.AddScoped<UserMoviesRepository>();
+
 
 var app = builder.Build();
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieTinder_API.Repositories;
+using MovieTinder_API.Services;
 using System.Text.Json;
 
 namespace MovieTinder_API.Controllers
@@ -7,18 +8,18 @@ namespace MovieTinder_API.Controllers
     [Route("api/[controller]")]
     public class MovieController : ControllerBase
     {
-        Repositories.MovieRepository _movieRepo;
+        Services.MovieService _movieService;
 
-        public MovieController(MovieRepository movieRepo)
+        public MovieController(MovieService movieService)
         {
-            _movieRepo = movieRepo;
+            _movieService = movieService;
         }
 
 
         [HttpGet, Route("/api/[controller]/{id}")]
         public IActionResult GetByID(int id)
         {
-            Models.Movie movie = _movieRepo.GetByID(id);
+            Models.Movie movie = _movieService.GetByID(id);
 
             string movieAsJson = JsonSerializer.Serialize(movie);
 
@@ -28,7 +29,7 @@ namespace MovieTinder_API.Controllers
         [HttpGet]
         public IActionResult GetAllMovies()
         {
-            List<Models.Movie> movies = _movieRepo.GetAll().ToList();
+            List<Models.Movie> movies = _movieService.GetAll();
 
             string moviesAsJson = JsonSerializer.Serialize(movies);
 

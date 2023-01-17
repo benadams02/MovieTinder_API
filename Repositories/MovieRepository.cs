@@ -7,7 +7,7 @@
             
         }
 
-        public Models.Movie GetByName(string name) 
+        public Models.Movie GetByName(string name)
         {
             return null;
         }
